@@ -17,7 +17,7 @@ Exemple de photo monochrome marquée :
 <img src="example_marked.bmp" alt="SU" align = "center" />
 </center>
 
-L'espace colorimétrique utilisé est l'espace $YC_{b}C_{r}$, c'est à dire l'espace utilisant l'intensité des pixels ($Y$), la composante bleue ($C_{b}$) et la composante rouge ($C_{r}$), la composante verte pouvant être déduite des trois autres composantes.
+L'espace colorimétrique utilisé pour la colorisation de l'imaeg est l'espace colorimétrique $YC_{b}C_{r}$ qui fut utilisé principalement par la télévision.
 
 On note $Y(r)$ la valeur de l'intensité pour le pixel $r$ et $U(r)$ la valeur d'une composante couleur ($C_{b}$ ou $C_{r}$).
 
@@ -50,7 +50,7 @@ $$
 J(U) = \left(\left(I - W\right).U\right)^{T}.\left(\left(I - W\right).U\right) = (C.U)^{T}(C.U)
 $$
 
-Pour prendre en compte les pixels dont on a fixé les couleurs, nous allons les séparer des pixels dont les couleurs ne sont pas fixés. On décompose donc $U$ comme :
+Pour prendre en compte les pixels dont on a fixé les couleurs (on dit qu'ils suivent une **condition de Dirichlet**), nous allons les séparer des pixels dont les couleurs ne sont pas fixés. On décompose donc $U$ comme :
 $$
 U = U_{F} + x
 $$
@@ -118,11 +118,6 @@ Vous remarquerez sûrement des petites différences entre le résultat trouvé p
 - Dans l'article, ils utilisent l'espace colorimétrique $YUV$ plutôt que $YC_{b}C_{r}$;
 - Le solveur utilisé n'est pas un gradient conjugué mais une méthode dite multi-grille, trop compliquée à paralléliser mais plus efficace que faire un gradient.
 
-Si vous voulez essayer d'autres images "à colorier", vous pouvez trouver d'autres exemples à l'adresse suivante :
-
-https://www.cs.huji.ac.il/w~yweiss/Colorization/
-
-
 ## A FAIRE
 
 ### Donner la configuration de votre ordinateur
@@ -132,7 +127,11 @@ https://www.cs.huji.ac.il/w~yweiss/Colorization/
 
 ### Paralléliser le code
 
-Paralléliser le code à l'aide de MPI. On s'attachera à paralléliser la construction de la matrice ainsi que les produits matrice-vecteur.
+- Dans un premier temps, faite une partition de l'image en *nbp* tranches d'images et demander à chaque processus d'essayer de coloriser sa portion d'image à partir des conditions de Dirichlet correspondant à sa portion d'image et en construisant une matrice uniquement locale à cette portion d'image
+- Bien que le résultat obtenu est convenable, pourquoi la stratégie ci-dessus peut mener à des portions d'images qui soient non colorées ?
+- Construire une partie de la matrice globale (correspondant à l'image complète) et paralléliser les produits
+  matrice-vecteur ainsi que le gradient conjugué afin de résoudre un problème global en parallèle plutôt que
+  plusieurs problèmes locaux.
 
 On calculera ensuite l'accélération obtenue pour les diverses parties parallélisées du code.
 
