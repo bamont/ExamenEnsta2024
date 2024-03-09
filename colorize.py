@@ -53,7 +53,7 @@ def create_field( values, ifield, nb_layers, prolong_field = False ):
 
 def compute_means(intensity):
     """
-    Calcul la moyenne de l'intensite d'un pixel et de ses voisins immediats (diagonale comprise)
+    Calcule la moyenne de l'intensite d'un pixel et de ses voisins immediats (diagonale comprise)
     en utilisant la couche la plus extérieure des cellules fantomes de l'intensite comme "condition limite"
     """
     return np.array([[(1./9.)*np.sum(intensity[i-1:i+2,j-1:j+2])
@@ -62,7 +62,7 @@ def compute_means(intensity):
 
 def compute_variance(intensity, means):
     """
-    Calcul la variance de l'intensite pour chaque pixel et de ses voisins immediats en utilisant la moyenne
+    Calcule la variance de l'intensite pour chaque pixel et de ses voisins immediats en utilisant la moyenne
     et l'intensite dont on utilise la couche la plus extérieure des cellules fantomes de l'intensite comme
     "condition limite".
     """
@@ -72,7 +72,7 @@ def compute_variance(intensity, means):
 
 def compute_wrs(intensity, means, variance, ir, jr, ic, jc):
     """
-    Calcul un poids pour la contribution d'un pixel voisin (ic,jc) au pixel de coordonne (ir,jr)
+    Calcule un poids pour la contribution d'un pixel voisin (ic,jc) au pixel de coordonne (ir,jr)
     en fonction de la correlation de l'intensite du pixel (ic,jc) avec le pixel (ir,jr)
     """
     # Prise en compte de la variance quand elle est nulle
@@ -177,7 +177,7 @@ def assembly_row( image_size, i_start, intensity, means, variance, pos, pt_rows,
 
 def compute_matrix(image_size, i_start, intensity, means, variance):
     """
-    Calcul la matrice issue de la minimisation de la fonction quadratique
+    Calcule la matrice issue de la minimisation de la fonction quadratique
     """
     ny = means.shape[0] - 2
     nx = means.shape[1] - 2

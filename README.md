@@ -52,9 +52,11 @@ J(U) = \left(\left(I - W\right).U\right)^{T}.\left(\left(I - W\right).U\right) =
 $$
 
 Pour prendre en compte les pixels dont on a fixé les couleurs (on dit qu'ils suivent une **condition de Dirichlet**), nous allons les séparer des pixels dont les couleurs ne sont pas fixées. On décompose donc $U$ comme :
-$
+
+$$
 U = U_{F} + x
-$
+$$
+
 où $U_{F}$ est l'ensemble des valeurs fixées (par la couleur imposée) et $x$ l'ensemble des valeurs "libres".
 
 De fait, on a donc :
