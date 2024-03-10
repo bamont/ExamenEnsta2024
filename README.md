@@ -136,11 +136,18 @@ Vous remarquerez sûrement des petites différences entre le résultat trouvé p
 
 ### Paralléliser le code
 
-- Dans un premier temps, faites une partition de l'image en *nbp* tranches d'images et demandez à chaque processus d'essayer de coloriser sa portion d'image à partir des conditions de Dirichlet correspondant à sa portion d'image et en construisant une matrice uniquement locale à cette portion d'image.
+- Dans un premier temps, faites une partition de l'image en *nbp* tranches d'images et demandez à chaque processus d'essayer de coloriser sa portion d'image à partir des conditions de Dirichlet correspondant à sa portion d'image et en construisant une matrice uniquement locale à cette portion d'image. <font color=" #0000F0">Vous nommerez le fichier parallélisé <b>colorize1.py</b></font>
 - Bien que le résultat obtenu soit convenable, pourquoi la stratégie ci-dessus peut mener à des portions d'images qui soient non colorées ?
 - Dans un deuxième temps, construire une partie de la matrice globale (correspondant à l'image complète) et paralléliser les produits
   matrice-vecteur ainsi que le gradient conjugué afin de résoudre un problème global en parallèle plutôt que
-  plusieurs problèmes locaux.
+  plusieurs problèmes locaux. <font color=" #0000F0">Vous nommerez le fichier parallélisé <b>colorize2.py</b></font>
 
 On calculera ensuite l'accélération obtenue pour les diverses parties parallélisées du code.
 
+À la fin de l'examen, vous enverrez vos trois fichiers (*README_nom_prenom.md*, *colorize1.py*, *colorize2.py*) **non archivés à votre chargé de TD** aux adresses e-mail suivant :
+
+  - xavier.juvigny@onera.fr
+  - jean-didier.garaud@onera.fr
+  - apf@crans.org
+
+<font color=" #F00000">Avant de quitter la salle d'examen, attendez que votre chargé de TD confirme qu'il a bien reçu vos fichiers et n'oubliez pas de signer la feuille de présence avant de partir</font>
